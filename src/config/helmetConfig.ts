@@ -1,36 +1,31 @@
-// config/helmetConfig.ts
-const getHelmetConfig = () => {
+import helmet from "helmet";
+
+export const getHelmetConfig = () => {
     const isDevelopment = process.env.NODE_ENV === "development";
+
+    // Base configuration for APIs
+    const baseConfig = {
+        contentSecurityPolicy: false, // Disable for JSON APIs
+        hidePoweredBy: true, // Always hide server info
+        noSniff: true, // Always prevent MIME sniffing
+    };
 
     if (isDevelopment) {
         return helmet({
-            // Relaxed settings for development
-            contentSecurityPolicy: false, // Disable CSP in development
+            ...baseConfig,
             hsts: false, // No HTTPS enforcement in development
         });
     }
 
-    // Production configuration optimized for APIs
+    // Production gets full security
     return helmet({
-        // Disable CSP for API-only applications
-        contentSecurityPolicy: false,
-
+        ...baseConfig,
         hsts: {
             maxAge: 31536000,
             includeSubDomains: true,
             preload: true,
         },
-
-        // Hide server technology information
-        hidePoweredBy: true,
-
-        // Prevent MIME type sniffing
-        noSniff: true,
-
-        // Set referrer policy for API responses
+        frameguard: { action: "deny" },
         referrerPolicy: { policy: "no-referrer" },
     });
 };
-
-// Use in your app
-app.use(getHelmetConfig());

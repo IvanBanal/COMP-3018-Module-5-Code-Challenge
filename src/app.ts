@@ -1,12 +1,12 @@
 import express, { Express } from "express";
-import helmet from "helmet";
+import { getHelmetConfig } from "../src/config/helmetConfig";
 import setupSwagger from "../src/config/swagger";
 
 // Initialize Express application.
 const app: Express = express();
 
 // Apply basic Helmet security
-app.use(helmet());
+app.use(getHelmetConfig());
 
 app.use(express.json());
 
@@ -27,7 +27,5 @@ app.get("/api/v1/health", (req, res) => {
 
 // Setup Swagger
 setupSwagger(app);
-
-
 
 export default app;
