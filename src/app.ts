@@ -1,5 +1,7 @@
 import express, { Express } from "express";
+import cors from "cors";
 import { getHelmetConfig } from "../src/config/helmetConfig";
+import { getCorsOptions } from "../src/config/corsConfig";
 import setupSwagger from "../src/config/swagger";
 
 // Initialize Express application.
@@ -7,6 +9,8 @@ const app: Express = express();
 
 // Apply basic Helmet security
 app.use(getHelmetConfig());
+
+app.use(cors(getCorsOptions()));
 
 app.use(express.json());
 
