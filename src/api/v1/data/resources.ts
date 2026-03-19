@@ -1,8 +1,4 @@
-// id 	title 	type 	url 	description
-// 4 	Jest Testing Tutorial 	tutorial 	https://example.com/jest-tutorial 	Complete guide to testing with Jest
-
-
-import {Resource } from "../models/resource";
+import { Resource } from "../models/resource";
 
 export const resources: Resource [] = [
     {
