@@ -31,4 +31,10 @@ export const updateResource = (id: number, data: Partial<Resource>) => {
     return resources[index];
 };
 
+export const deleteResource = (id: number) => {
+    const index = resources.findIndex(resource => resource.id === id);
+    if (index === -1) return false;
 
+    resources.splice(index, 1);
+    return true;
+};
