@@ -22,4 +22,21 @@ export const getResourceById = (req: Request, res: Response) => {
     res.status(HTTP_STATUS.OK).json({ message: "Resource retrieved", data: resource });
 };
 
+export const createResource = (req: Request, res: Response) => {
+    const { title, type, url, description } = req.body;
+    if (!title) {
+        res.status(HTTP_STATUS.BAD_REQUEST).json({ messsage: "Missing required field: title" });
+        return;
+    }
+    if (!type) {
+        res.status(HTTP_STATUS.BAD_REQUEST).json({ messsage: "Missing required field: type" });
+        return;
+    }
+    if (!url) {
+        res.status(HTTP_STATUS.BAD_REQUEST).json({ messsage: "Missing required field: url" });
+        return;
+    }
 
+    const resource = service.createResource({ title, type, url, description });
+    res.status(HTTP_STATUS.CREATED).json({ message: "Resource created", data: resource });
+};
