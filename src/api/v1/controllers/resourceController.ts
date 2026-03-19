@@ -50,3 +50,15 @@ export const updateResource = (req: Request, res: Response) => {
     }
     res.status(HTTP_STATUS.OK).json({ message: "Resource updated", data: resource });
 };
+
+export const deleteResource = (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const success = service.deleteResource(id);
+    if (!success) {
+        res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Resource not found" });
+        return;
+    }
+    res.status(HTTP_STATUS.OK).json({ message: "Resources deleted" });
+};
+
+
