@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import setupSwagger from "../src/config/swagger";
 
 // Initialize Express application.
 const app: Express = express();
@@ -18,5 +19,7 @@ app.get("/api/v1/health", (req, res) => {
     });
 });
 
+// Setup Swagger
+setupSwagger(app);
 
 export default app;
