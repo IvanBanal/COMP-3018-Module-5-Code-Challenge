@@ -36,3 +36,4 @@ app.use("/api/v1", resourceRoutes)
 setupSwagger(app);
 
 export default app;
+
