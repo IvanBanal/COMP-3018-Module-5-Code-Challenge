@@ -45,7 +45,7 @@ export const updateResource = (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const resource = service.updateResource(id, req.body);
     if (!resource) {
-        res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Resource not fuond" });
+        res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Resource not found" });
         return;
     }
     res.status(HTTP_STATUS.OK).json({ message: "Resource updated", data: resource });

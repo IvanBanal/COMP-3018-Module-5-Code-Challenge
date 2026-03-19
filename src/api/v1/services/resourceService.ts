@@ -24,7 +24,7 @@ export const createResource = (data: Partial<Resource>) => {
 };
 
 export const updateResource = (id: number, data: Partial<Resource>) => {
-    const index = resources.findIndex(resouce => resouce.id === id);
+    const index = resources.findIndex(resource => resource.id === id);
     if (index === -1) return null;
 
     resources[index] = { ...resources[index], ...data}
